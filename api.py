@@ -1,25 +1,62 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-# Define a route for the root endpoint of your API
-@app.route('/')
-def index():
-    return 'Hello from flask API'
+data = [
+    {
+      "name": "github",
+      "image": "githubLogo",
+      "link": "https://github.com/cobbettn",
+      "description": "My Github"
+    },
+    {
+      "name": "linkedin",
+      "image": "linkedinLogo",
+      "link": "https://www.linkedin.com/in/nathan-cobbett/",
+      "description": "LinkedIn"
+    },
+    {
+      "name": "resume",
+      "image": "resumeIcon",
+      "link": "Resume",
+      "description": "My Resume"
+    },
+    {
+      "name": "bio",
+      "image": "myFace",
+      "description": "About me",
+      "modalContent": [
+        "I like to build things with web technologies. I started programming as a hobby in my downtime and it eventually turned into a career. Through my work as a software engineer I strive to create robust, accessible and performant applications that delight and empower users. I'm open to job opportunites where I can solve interesting problems and further expand my skill set as an engineer.", 
+        "When I'm not on my computer I like spending time in the woods, retro gaming and bouldering. I also enjoy taking pictures as a hobby and help run a small photography business." 
+     ]
+    },
+    {
+      "name": "code",
+      "image": "codeIcon",
+      "link": "https://github.com/cobbettn/cobbettn.github.io",
+      "description": "Code for this webpage"
+    },
+    {
+      "name": "in progress",
+      "image": "colorBars",
+      "description": "in progress"
+    },
+    None,
+    None,
+    None,
+    None,
+    None,
+    None,
+    None,
+    None,
+    None,
+    None,
+    None,
+]
 
-# Define a route for a simple GET endpoint
-@app.route('/api/get', methods=['GET'])
+@app.route('/data')
 def get_data():
-    data = {'message': 'This is a sample response.'}
     return jsonify(data)
 
-# Define a route for a POST endpoint that accepts JSON data
-@app.route('/api/post', methods=['POST'])
-def post_data():
-    req_data = request.get_json()
-    message = req_data['message']
-    response_data = {'message': f'Received message: {message}'}
-    return jsonify(response_data)
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0')
